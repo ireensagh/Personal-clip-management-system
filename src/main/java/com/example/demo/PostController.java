@@ -1,4 +1,6 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 @RestController
 public class MyRestController {
 
@@ -35,4 +37,9 @@ public class PostController {
         ResponseEntity<Post[]> response = restTemplate.getForEntity(API_URL, Post[].class);
         return Arrays.asList(response.getBody());
     }
+    @RequestMapping
+    public String helloworld(){
+        return "hello  world from spring boot";
+    }
+
 }

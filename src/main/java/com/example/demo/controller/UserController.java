@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
@@ -49,4 +51,12 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        User existingUser = userService.getUserById(id);
+        if (existingUser != null) {
+            userService.deleteUser(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }

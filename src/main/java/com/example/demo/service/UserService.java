@@ -12,6 +12,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Value("${api.url}")
+    private String apiUrl;
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -28,4 +31,13 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void importUsersFromApi() {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<User[]> response = restTemplate.getForEntity(apiUrl, User[].class);
+        User[] users = response.getBody();
+        for (User user : users) {
+            userRepository.save(user);
+        }
+    }
 }
+

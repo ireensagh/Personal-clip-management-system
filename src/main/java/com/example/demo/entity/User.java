@@ -51,3 +51,11 @@ public class User {
     }
 
 }
+/* another option if we had log in
+
+private Long id;
+
+    private String username;
+
+    private String password;
+ */

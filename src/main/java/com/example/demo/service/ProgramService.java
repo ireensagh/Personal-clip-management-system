@@ -1,5 +1,15 @@
 package com.example.demo.service;
 
+import com.example.demo.repository.ProgramRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.client.OmnyStudioClient;
+import com.example.demo.entity.Program;
+import com.example.demo.repository.ProgramRepository;
+
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProgramService {
 

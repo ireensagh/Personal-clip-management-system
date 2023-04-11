@@ -1,4 +1,14 @@
 package com.example.demo.service;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.repository.ClipRepository;
+import com.example.demo.client.OmnyStudioClient;
+import com.example.demo.entity.Clip;
+import org.springframework.data.domain.PageRequest;
+
+
+import java.util.List;
+
 
 @Service
 public class ClipService {
@@ -28,7 +38,7 @@ public class ClipService {
 //    }
 
     public List<Clip> getRecentClipsByProgramId(Long programId, int limit) {
-        return clipRepository.findTopByProgramIdOrderByPublishedAtDesc(programId, PageRequest.of(0, limit));
+        return clipRepository.findTop50ByProgramIdOrderByPublishedDateDesc(programId, PageRequest.of(0, limit));
     }
 
     public Clip saveClip(Clip clip) {

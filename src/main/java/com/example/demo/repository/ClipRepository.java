@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 import java.util.List;
-
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.Clip;
@@ -10,9 +10,12 @@ import java.util.Optional;
 
 public interface ClipRepository extends JpaRepository<Clip, Long> {
 
-    List<Clip> findAll();
+    //List<Clip> findAll();
+    List<Clip> findTop50ByProgramIdOrderByPublishedDateDesc(Long programId, Pageable pageable);
 
-    Optional<Clip> findById(Long id);
+
+    //Optional<Clip> findById(Long id);
+
 
     List<Clip> findByProgramId(Long programId);
 
